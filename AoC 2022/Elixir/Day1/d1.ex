@@ -1,6 +1,6 @@
 defmodule D do
   def rf do
-    file = "D:\\Elixir\\AdventOfCode2022inElixir\\Day1\\input1.txt"
+    file = "input1.txt"
     {:ok, input} = File.read(file)
     elves = String.split(input, "\r\n\r\n")
     sums = []

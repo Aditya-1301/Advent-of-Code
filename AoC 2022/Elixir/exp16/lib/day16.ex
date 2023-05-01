@@ -4,7 +4,7 @@ defmodule D16 do
   # Answer part 2 -> 2520
 
   def read() do
-    {:ok, input} = File.read("D:\\Elixir\\AdventOfCode2022inElixir\\mixp\\lib\\input16.txt")
+    {:ok, input} = File.read("input16.txt")
     rows = input |> String.split("\n")
     rows = Enum.map(rows, fn row ->
       String.split(row, ["Valve ", " has flow rate=", "; tunnels lead to valves ",  "; tunnel leads to valve ", ", "], trim: true) end)

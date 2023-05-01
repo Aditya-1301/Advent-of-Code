@@ -8,7 +8,7 @@ defmodule D16P2 do
 	# Step 3: Use DFS to solve problem.
 
 	def read() do
-		file = "D:\\Elixir\\AdventOfCode2022inElixir\\mixp\\lib\\input16.txt"
+		file = "input16.txt"
 		{_, content} = File.read(file)
 		list = String.split(content, "\r\n") |> parse_row([])
 		unvisited = create_unvisited_nodes_list(list)

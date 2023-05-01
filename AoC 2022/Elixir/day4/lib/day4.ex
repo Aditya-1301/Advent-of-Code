@@ -1,7 +1,7 @@
 defmodule Day4 do
   def readFile() do
-    file = "D:\\Elixir\\AdventOfCode2022inElixir\\day4\\lib\\input.txt"
-    file_linux = "/mnt/d/Elixir/AdventOfCode2022inElixir/day4/lib/input.txt"
+    file = "input.txt"
+    file_linux = "/mnt/d/Elixir/Advent_Of_Code/Elixir/day4/lib/input.txt"
     input = File.read!(file)
     s = String.split(input, [",", "\r\n"])
     IO.inspect(s)

@@ -7,7 +7,7 @@ public class Day2 {
 
     public static void strategyGuide() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("D:\\AdventOfCode2022\\src\\Day2\\input2.txt"));
+                new FileReader("D:\\Advent_Of_Code\\Java\\Day2\\input2.txt"));
         HashMap<String,Integer> hashMap = new HashMap<>();
         hashMap.put("A X",1+3);
         hashMap.put("A Y",2+6);

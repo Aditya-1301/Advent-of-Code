@@ -1,6 +1,6 @@
 defmodule D2 do
   def readFile do
-    file = "D:\\Elixir\\AdventOfCode2022inElixir\\Day2\\input2.txt"
+    file = "input2.txt"
     {:ok, input} = File.read(file)
     lines = String.split(input, "\r\n")
     IO.inspect(iterate(lines, 0))

@@ -1,6 +1,6 @@
 defmodule D3 do
   def readFile do
-    file = "D:/Elixir/AdventOfCode2022inElixir/Day3/input3.txt"
+    file = "input3.txt"
     file1 = "Day3\\input3.txt"
     input = File.read(file1)
     # lines = String.split(input, "\r\n")
@@ -74,7 +74,7 @@ defmodule D3 do
   end
 
   def test2 do
-    file = "D:\\Elixir\\AdventOfCode2022\\Day3\\input3.txt"
+    file = "input3.txt"
     {:ok, input} = File.read(file)
     lines = String.split(input, "\r\n")
     #IO.inspect(lines)

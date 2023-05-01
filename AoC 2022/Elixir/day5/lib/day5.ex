@@ -11,7 +11,7 @@ defmodule Day5 do
       "VMCSHPLZ",
       "ZGWLFPR"
     ]
-    input = File.read!("D:\\Elixir\\AdventOfCode2022inElixir\\day5\\lib\\input5.txt")
+    input = File.read!("input5.txt")
     |> String.split("\r\n")
     input2 = for i <- input do
       String.split(i, ["move ", " from ", " to "]) |> Enum.reject( fn x -> x == "" end )

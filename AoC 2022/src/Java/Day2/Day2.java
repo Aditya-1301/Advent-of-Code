@@ -1,4 +1,4 @@
-package Day2;
+package Java.Day2;
 
 import java.io.*;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ public class Day2 {
 
     public static void strategyGuide() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("D:\\Advent_Of_Code\\Java\\Day2\\input2.txt"));
+                new FileReader("D:\\Advent_Of_Code\\AoC 2022\\src\\\\Java\\Day2\\input2.txt"));
         HashMap<String,Integer> hashMap = new HashMap<>();
         hashMap.put("A X",1+3);
         hashMap.put("A Y",2+6);

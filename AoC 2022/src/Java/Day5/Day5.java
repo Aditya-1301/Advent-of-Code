@@ -1,4 +1,4 @@
-package Day5;
+package Java.Day5;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -41,7 +41,7 @@ public class Day5 {
 
     public static void operate(LinkedList<String>[] l) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(
-                "D:\\AdventOfCode2022\\src\\Day5\\input5.2.txt"
+                "D:\\Advent_Of_Code\\AoC 2022\\src\\Day5\\input5.2.txt"
         ));
         String s;
         while (( s = bufferedReader.readLine()) !=null){
@@ -60,7 +60,7 @@ public class Day5 {
 
     public static void operate2(LinkedList<String>[] l) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(
-                "D:\\AdventOfCode2022\\src\\Day5\\input5.2.txt"
+                "D:\\Advent_Of_Code\\AoC 2022\\src\\Day5\\input5.2.txt"
         ));
         String s;
         while (( s = bufferedReader.readLine()) !=null){

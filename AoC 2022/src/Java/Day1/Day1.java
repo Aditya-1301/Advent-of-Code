@@ -1,4 +1,4 @@
-package Day1;
+package Java.Day1;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ public class Day1 {
     public static void FindCaloriesFromInput() throws IOException {
         ArrayList<Integer> a = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(
-        new FileReader("D:\\Advent_Of_Code\\AoC 2022\\Java\\Day1\\input1.txt"));
+        new FileReader("D:\\Advent_Of_Code\\AoC 2022\\src\\Java\\Day1\\input1.txt"));
         String s;
         int sum = 0;
         while ((s = bufferedReader.readLine())!=null){

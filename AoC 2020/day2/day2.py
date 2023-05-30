@@ -1,6 +1,3 @@
-from enum import Enum
-
-
 def read_file(file, mode):
     f = open(file)
     dic = []

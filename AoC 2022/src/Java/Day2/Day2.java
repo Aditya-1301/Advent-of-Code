@@ -30,7 +30,7 @@ public class Day2 {
     public static void strategyGuide2() throws IOException {
         //X->LOSE ; Y->DRAW ; Z->WIN
         BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("D:\\AdventOfCode2022\\src\\Day2\\input2.txt"));
+                new FileReader("D:\\Advent_Of_Code\\AoC 2022\\src\\Java\\Day2\\input2.txt"));
         HashMap<String,Integer> hashMap = new HashMap<>();
         hashMap.put("A X",3+0);
         hashMap.put("A Y",1+3);

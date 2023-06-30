@@ -49,7 +49,7 @@ public class Day3 {
 
     public static void prioritySum2() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("D:\\Advent_Of_Code\\src\\Java\\Day3\\input3.txt"));
+                new FileReader("D:\\Advent_Of_Code\\AoC 2022\\src\\Java\\Day3\\input3.txt"));
         HashMap<Character,Integer> h = new HashMap<>();
         for (int i = 0; i < 26; i++) {
             h.put((char) ('a'+i),i+1);

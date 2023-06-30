@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Day4 {
     public static void OverlappingIDs() throws FileNotFoundException {
-        Scanner sc = new Scanner( new File("D:\\Advent_Of_Code\\AoC 2022\\src\\Day4\\inputAltered.txt") ) ;
+        Scanner sc = new Scanner( new File("D:\\Advent_Of_Code\\AoC 2022\\src\\Java\\Day4\\inputAltered.txt") ) ;
         int OverlapCount = 0;
         int [][] rangeValues = new int[100][4];
 

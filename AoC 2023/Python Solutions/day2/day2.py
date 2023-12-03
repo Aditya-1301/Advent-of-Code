@@ -19,6 +19,7 @@ def read_file_test_input(a):
 def part1(inputs):
     count = 0
     redL, greenL, blueL = 12, 13, 14
+    power = []
     for a, i in enumerate(inputs):
         print(a, i)
         bools = []
@@ -40,9 +41,11 @@ def part1(inputs):
                     elif color == 'green':
                         greens.append(number)
                         bools.append(True) if number <= greenL else bools.append(False)
+        print("MAX :", max(reds), max(blues), max(greens),max(reds)*max(blues)*max(greens) )
+        power.append(max(reds)*max(blues)*max(greens))
         if all(bools):
             count += (a+1)
-    return count
+    return [count, sum(power)]
 
 
 if __name__ == "__main__":

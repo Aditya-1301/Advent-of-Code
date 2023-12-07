@@ -3,24 +3,21 @@ import math
 
 def read_file():
     f = open("input4.txt")
-    inputs = []
+    inputs, new_inputs = [], []
     for i in f:
         inputs.append([i[i.index(":") + 1:i.index("|") - 1], i[i.index("|") + 1:i.index("\n")]])
-    new_inputs = []
     for [i, j] in inputs:
-        i1 = i.split(" ")
-        j1 = j.split(" ")
-        i1 = [int(k) for k in i1 if k != ""]
-        j1 = [int(k) for k in j1 if k != ""]
+        i1 = [int(k) for k in i.split(" ") if k != ""]
+        j1 = [int(k) for k in j.split(" ") if k != ""]
         new_inputs.append([set(i1), set(j1)])
-    # part1(new_inputs)
+    part1(new_inputs)
     part2(new_inputs)
 
 
 def part1(new_inputs):
     points = []
     for [i, j] in new_inputs:
-        k = i.intersection(j)
+        k = i.intersection(j)  # To check for matches between the winning and my numbers
         if len(k) == 0:
             points.append(0)
         else:
@@ -40,13 +37,13 @@ def part2(new_inputs):
         else:
             if i != len(new_inputs2) - 1:
                 i1 = i+1
-                print("i:", i, "| matches:", len(matches), "| copies:", l)
+                # print("i:", i, "| matches:", len(matches), "| copies:", l)
                 while i1 <= i + len(matches):
                     new_inputs2[i1][2] += l
-                    print("Card:", i1+1, ":", new_inputs2[i1][2])
+                    # print("Card:", i1+1, ":", new_inputs2[i1][2])
                     i1 += 1
     copies = sum([k for [i,j,k] in new_inputs2])
-    print(copies)
+    print("P2:", copies)
 
 
 if __name__ == "__main__":

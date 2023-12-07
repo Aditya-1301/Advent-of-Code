@@ -6,26 +6,23 @@ def read_file():
     x = [re.sub(r"Game \d*:|\n|\s", "", i) for i in f]
     y = [re.split(r";", i) for i in x]
     z = [[sub_str.split(',') for sub_str in inner_list] for inner_list in y]
-    print("P1:", part1(z))
+    print("[P1, P2] =", solution(z))
 
 
 def read_file_test_input(a):
     x = [re.sub(r"Game \d*:|\n|\s", "", i) for i in a]
     y = [re.split(r";", i) for i in x]
     z = [[sub_str.split(',') for sub_str in inner_list] for inner_list in y]
-    print("P1:", part1(z))
+    print("[P1, P2] =", solution(z))
 
 
-def part1(inputs):
+def solution(inputs):
     count = 0
-    redL, greenL, blueL = 12, 13, 14
+    red_l, green_l, blue_l = 12, 13, 14
     power = []
     for a, i in enumerate(inputs):
-        print(a, i)
-        bools = []
-        reds = []
-        blues = []
-        greens = []
+        # print(a, i)
+        bools, reds, blues, greens = [], [], [], []
         for j in i:
             for k in j:
                 match = re.match(r'(\d+)(red|blue|green)', k)
@@ -34,14 +31,14 @@ def part1(inputs):
                     number = int(number)
                     if color == 'red':
                         reds.append(number)
-                        bools.append(True) if number <= redL else bools.append(False)
+                        bools.append(True) if number <= red_l else bools.append(False)
                     elif color == 'blue':
                         blues.append(number)
-                        bools.append(True) if number <= blueL else bools.append(False)
+                        bools.append(True) if number <= blue_l else bools.append(False)
                     elif color == 'green':
                         greens.append(number)
-                        bools.append(True) if number <= greenL else bools.append(False)
-        print("MAX :", max(reds), max(blues), max(greens),max(reds)*max(blues)*max(greens) )
+                        bools.append(True) if number <= green_l else bools.append(False)
+        # print("MAX :", max(reds), max(blues), max(greens),max(reds)*max(blues)*max(greens) )
         power.append(max(reds)*max(blues)*max(greens))
         if all(bools):
             count += (a+1)
@@ -49,7 +46,7 @@ def part1(inputs):
 
 
 if __name__ == "__main__":
-    i = \
+    test_input = \
         [
             "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n",
             "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\n",

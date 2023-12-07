@@ -1,10 +1,18 @@
 def read_file():
     f = open("input1_1.txt")
+    test = [
+        "two1nine\n",
+        "eightwothree\n",
+        "abcone2threexyz\n",
+        "xtwone3four\n",
+        "4nineeightseven2\n",
+        "zoneight234\n",
+        "7pqrstsixteen\n",
+    ]
     calibration_numbers_1 = part_1([], f)
     print("PART1:", sum(calibration_numbers_1))
-    # inputs = [i for i in f]
-    # calibration_numbers_2 = part_2(inputs)
-    # print("PART2:", sum(calibration_numbers_2))
+    inputs = [i.split("\\")[0] for i in f]
+    print(sum(part_2(inputs)))
 
 
 def part_1(calibration_numbers, f):
@@ -20,42 +28,35 @@ def part_1(calibration_numbers, f):
     return calibration_numbers
 
 
-# def word_to_num(i, output):
-#     number_in_letters = {
-#         "one": 1,
-#         "two": 2,
-#         "three": 3,
-#         "four": 4,
-#         "five": 5,
-#         "six": 6,
-#         "seven": 7,
-#         "eight": 8,
-#         "nine": 9,
-#         "twone": 21,
-#         "sevenine": 79,
-#         "oneight": 18,
-#         "fiveight": 58,
-#         "threeight": 38,
-#         "twoneight": 218,
-#         "eightwo": 82
-#     }
-#     for j in number_in_letters:
-#         list = []
-#         if j.isnumeric():
-#             list.append(str(j))
-#         if j in i:
-#             # i = i.replace(j, str(number_in_letters[j]))
-#             list.append(str(number_in_letters[j]))
-#         print(list)
-#     output.append(i)
-#
-#
-# def part_2(inputs):
-#     output = []
-#     for i in inputs:
-#         word_to_num(i, output)
-#     print(output)
-#     return part_1([], output)
+def word_to_num(input_str):
+    number_words = {
+        "twone": "21e",
+        "sevenine": "79e",
+        "oneight": "18t",
+        "fiveight": "58t",
+        "threeight": "38t",
+        "eightwo": "82o",
+        "one": "1e",
+        "two": "2o",
+        "three": "3e",
+        "four": "4r",
+        "five": "5e",
+        "six": "6x",
+        "seven": "7n",
+        "eight": "8t",
+        "nine": "9e",
+    }
+
+    for word, digit in number_words.items():
+        input_str = input_str.replace(word, digit)
+    return input_str
+
+
+def part_2(inputs):
+    output = []
+    for i in inputs:
+        output.append(word_to_num(i))
+    return part_1([], output)
 
 
 if __name__ == "__main__":

@@ -9,12 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day7 {
-    /*
-    root_Folder : TreeStruct = {
-        List[Dirs: TreeStruct{} ...],
-        Map[File_Size: File_Name, ...]
-    }
-    */
     static class TreeStructure{
 
         int size;
@@ -22,12 +16,6 @@ public class Day7 {
         TreeStructure prev;
         ArrayList<TreeStructure> directories;
         HashMap<String, Integer> files;
-
-//        TreeStructure(){
-//            this.name = "";
-//            this.directories = new ArrayList<>();
-//            this.files = new HashMap<>();
-//        }
 
         TreeStructure(String name){
             this.size = 0;

@@ -112,22 +112,23 @@ public class Day7 {
             this.size = totalSum;
         }
 
+        /*
         @Override
         public String toString() {
             TreeStructure current = this;
-            StringBuilder fileTree = new StringBuilder("ROOT: " + current.name + "\n");
+            StringBuilder fileTree = new StringBuilder("Dir(" + current.name + ") :");
             if (current.directories.isEmpty()){
-                System.out.println("FLAG");
-//                if(!current.files.isEmpty()){
-//                    fileTree.append("Files: ");
-//                    for (var i: current.files.entrySet()) {
-//                        fileTree.append("(" + i.getKey() + ":" + i.getValue() + ") " + " | ");
-//                    }
-//                    fileTree.append("\n");
-//                }
+                System.out.println("Dirs Empty: Current Value for current var = ( " + current.name + " )");
+                if(!current.files.isEmpty()){
+                    fileTree.append("Files: ");
+                    for (var i: current.files.entrySet()) {
+                        fileTree.append("(" + i.getKey() + ":" + i.getValue() + ") " + " | ");
+                    }
+                    fileTree.append("\n");
+                }
             }
             else{
-                System.out.println("FLAG2");
+                System.out.println("Dirs Full: Current Value for current var = ( " + current.name + " )");
                 for (var i: current.directories) {
                     current = i;
                     fileTree.append(current.toString());
@@ -141,85 +142,74 @@ public class Day7 {
                     }
                 }
             }
-            if(!current.files.isEmpty()){
-                fileTree.append("Files: ");
-                for (var i: current.files.entrySet()) {
-                    fileTree.append("(" + i.getKey() + ":" + i.getValue() + ") " + " | ");
-                }
-                fileTree.append("\n");
+            return fileTree.toString();
             }
+        }
+        */
+
+        @Override
+        public String toString() {
+            TreeStructure current = this;
+            StringBuilder fileTree = new StringBuilder("{ Dir(" + current.name + "): ");
+            if (!current.directories.isEmpty()){
+                fileTree.append(current.directories);
+            }
+            fileTree.append(Arrays.toString(current.files.entrySet().toArray()));
+            fileTree.append(" }");
             return fileTree.toString();
         }
     }
 
 
-
     public static void parseFileTree() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(
                 "D:\\Advent_Of_Code\\AoC 2022\\src\\Java\\Day7\\testInput.txt"));
-        String s;
-
+        System.out.println("\n\n");
         Pattern pattern1 = Pattern.compile("\\$ cd (.+)$");
-        Pattern pattern2 = Pattern.compile("\\$ ls$");
+//        Pattern pattern2 = Pattern.compile("\\$ ls$");
         Pattern pattern3 = Pattern.compile("^dir\\s(\\w+)$");
         Pattern pattern4 = Pattern.compile("^(\\d+)\\s(\\w+(?:\\.\\w+)?)$");
-        //                for(int i = 0; i < root.directories.size(); i++){
-        //                    TreeStructure dir = root.directories.get(i);
-        //                    if (dir.name.equals(matcher1.group(1))){
-        //
-        //                    }
-        //                }
-        ArrayList<String> input = new ArrayList<>();
+
         TreeStructure root = new TreeStructure("\\");
-        bufferedReader.readLine();
         TreeStructure current = root;
+
+        String s;
+        bufferedReader.readLine();
         while( (s = bufferedReader.readLine()) != null ){
-//            input.add(s);
-            System.out.println(s);
             Matcher matcher1 = pattern1.matcher(s);
 //            Matcher matcher2 = pattern2.matcher(s);
             Matcher matcher3 = pattern3.matcher(s);
             Matcher matcher4 = pattern4.matcher(s);
             if (matcher1.matches()){
                 if (matcher1.group(1).equals("..") && current.name != "\\") {
-                    System.out.println("Current = " + current.name);
+                    System.out.println("Changed Directory to Dir(" + current.prev.name + ") from Dir(" + current.name + ")");
                     current = current.prev;
                 }
                 else{
                     for (var i: current.directories) {
                         if (Objects.equals(i.name, matcher1.group(1))){
+                            System.out.println("Changed Directory to Dir(" + i.name + ") from Dir(" + current.name + ")");
                             current = i;
-                            System.out.println("Current = " + current.name);
                         }
                     }
-//                    root.directories.add(new TreeStructure(matcher1.group(1)));
                 }
-//                System.out.println(1 + " " + matcher1.group(1) + " | " + s);
             }
-//            if(matcher2.matches()){
-//                System.out.println(2 + " " + s  + " | " + s);
-//            }
             if(matcher3.matches()){
                 current.addToDirectoryList(matcher3.group(1));
-                System.out.println("Added to dir: " + current.name);
-//                System.out.println(3 + " " + matcher3.group(1)  + " | " + s);
+                System.out.println("Added Dir(" + matcher3.group(1)+ ") to Dir(" + current.name + ")");
             }
             if (matcher4.matches()){
                 current.addToFileMap(matcher4.group(2), Integer.parseInt(matcher4.group(1)));
-                System.out.println("Added to dir: " + current.name + ", file " + matcher4.group(2) + " of size " + matcher4.group(1));
+                System.out.println("Added [ File Name = " + matcher4.group(2) + ", Size = " + matcher4.group(1) + "] to Dir(" + current.name + ")");
             }
         }
 
+        System.out.println("\n\n\n");
         System.out.println(root);
         root.setSize();
         System.out.println(root.getSize());
         System.out.println();
         System.out.println(Arrays.toString(root.allDirectorySizes().entrySet().toArray()));
-//        for (int i = 0; i < input.size() - 1; i++) {
-//            if(input.get(i+1).equals("$ cd ..\n")){
-//
-//            }
-//        }
 
         /*
             Matcher matcher1 = pattern1.matcher(s);

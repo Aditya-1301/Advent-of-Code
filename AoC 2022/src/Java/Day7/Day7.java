@@ -1,5 +1,7 @@
 package Java.Day7;
 
+import com.sun.source.tree.Tree;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +12,6 @@ import java.util.regex.Pattern;
 
 public class Day7 {
     static class TreeStructure{
-
         int size;
         String name;
         TreeStructure prev;
@@ -34,32 +35,6 @@ public class Day7 {
             this.files.put(file_name, file_size);
         }
 
-        int getSize(){
-            TreeStructure current = this;
-            if (current.directories.isEmpty()){
-                if(!current.files.isEmpty()){
-                    int sum = 0;
-                    for (int i: current.files.values()) {
-                       sum += i;
-                    }
-                    this.size = sum;
-                }
-            }
-            else{
-                int sum = 0;
-                for (var i: current.directories) {
-                    sum += i.getSize();
-                    if(!i.files.isEmpty()){
-                        for (int j: i.files.values()) {
-                            sum += j;
-                        }
-                    }
-                    this.size = sum;
-                }
-            }
-            return this.size;
-        }
-
         HashMap<String, Integer> allDirectorySizes(){
             HashMap<String, Integer> dirMap = new HashMap<>();
             TreeStructure current = this;
@@ -72,32 +47,26 @@ public class Day7 {
             return dirMap;
         }
 
-        void setSize(){
+        int setSize(){
             int totalSum = 0;
             TreeStructure current = this;
-            if (current.directories.isEmpty()){
-                if(!current.files.isEmpty()){
-                    int dirSum = 0;
-                    for (int i: current.files.values()) {
-                        dirSum += i;
-                    }
-                    current.size = dirSum;
-                    totalSum += current.size;
+            if(!current.files.isEmpty()){
+                int dirSum = 0;
+                for (int i: current.files.values()) {
+                    dirSum += i;
                 }
+                current.size = dirSum;
+                totalSum += dirSum;
             }
-            else{
-                for (var i: current.directories) {
-                    int dirSum = i.getSize();
-                    if(!i.files.isEmpty()){
-                        for (int j: i.files.values()) {
-                            dirSum += j;
-                        }
-                    }
-                    current.size = dirSum;
-                    totalSum += current.size;
+            if (!current.directories.isEmpty()) {
+                for (var i : current.directories) {
+                    int dirSum = i.setSize();
+                    i.size = dirSum;
+                    totalSum += dirSum;
                 }
             }
             this.size = totalSum;
+            return totalSum;
         }
 
         /*
@@ -149,7 +118,7 @@ public class Day7 {
     }
 
 
-    public static void parseFileTree() throws IOException {
+    public static void parseFileTree(TreeStructure root) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(
                 "D:\\Advent_Of_Code\\AoC 2022\\src\\Java\\Day7\\testInput.txt"));
         System.out.println("\n\n");
@@ -158,7 +127,7 @@ public class Day7 {
         Pattern pattern3 = Pattern.compile("^dir\\s(\\w+)$");
         Pattern pattern4 = Pattern.compile("^(\\d+)\\s(\\w+(?:\\.\\w+)?)$");
 
-        TreeStructure root = new TreeStructure("\\");
+
         TreeStructure current = root;
 
         String s;
@@ -192,12 +161,6 @@ public class Day7 {
             }
         }
 
-        System.out.println("\n\n\n");
-        System.out.println(root);
-        root.setSize();
-        System.out.println(root.getSize());
-        System.out.println();
-        System.out.println(Arrays.toString(root.allDirectorySizes().entrySet().toArray()));
 
         /*
             Matcher matcher1 = pattern1.matcher(s);
@@ -219,6 +182,19 @@ public class Day7 {
         */
     }
     public static void main(String[] args) throws IOException {
-        parseFileTree();
+        TreeStructure root = new TreeStructure("\\");
+
+        parseFileTree(root);
+
+        System.out.println("\n\n\n");
+        System.out.println(root);
+
+        System.out.println(root.setSize());
+
+        System.out.println(root.size);
+        System.out.println();
+        System.out.println(Arrays.toString(root.allDirectorySizes().entrySet().toArray()));
+        // a -> 94269 ; e -> 584;  d -> 24933642; / -> [a+e+d : 25028495] + [files: 23352670]; Total: 48381165
+
     }
 }
